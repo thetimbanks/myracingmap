@@ -12,3 +12,6 @@ accounts-ui
 accounts-base
 accounts-password
 meteorhacks:fast-render
+dburles:google-maps
+less
+coffeescript
