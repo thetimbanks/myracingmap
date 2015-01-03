@@ -2,6 +2,7 @@
   <div class="dashboard-sidebar">
     {{> races}}
     {{> add_race}}
+    {{> view_race}}
   </div>
 </template>
 
@@ -13,7 +14,7 @@
 
     <ul>
       {{#each races}}
-      <li>{{name}}</li>
+      <li><a href="#" data-race="{{_id}}">{{name}}</a></li>
       {{/each}}
     </ul>
   </div>
@@ -27,5 +28,15 @@
       <input name="athlinks_id" type="text" placeholder="Search Athlinks">
       <button type="submit">Submit</button>
     </form>
+  </div>
+</template>
+
+<template name="view_race">
+  <div class="view-race">
+    <a href="#" class="cancel">Cancel</a>
+    {{#with race}}
+    <h2>{{name}}</h2>
+    <p>{{lat}}, {{lon}}</p>
+    {{/with}}
   </div>
 </template>

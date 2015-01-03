@@ -10,7 +10,12 @@ Template.race_map.helpers({
           var marker = new google.maps.Marker({
             position: new google.maps.LatLng(race.lat, race.lon),
             map: map.instance,
-            title: race.name
+            title: race.name,
+            race: race
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            Session.set("current_race", marker.race._id);
           });
         });
       });
