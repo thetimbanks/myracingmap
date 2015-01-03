@@ -1,0 +1,14 @@
+<template name="application_layout">
+  <header>
+    This is the header up here
+    {{> loginButtons}}
+  </header>
+
+  <div id="main-content">
+    {{> yield}}
+  </div>
+
+  <footer>
+    This is the footer down here
+  </footer>
+</template>
