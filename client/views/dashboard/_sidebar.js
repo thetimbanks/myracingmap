@@ -12,18 +12,11 @@ Template.dashboard_sidebar.events({
     template.$(".dashboard-sidebar").removeClass("adding viewing");
   },
   "submit .search": function (event) {
-    // This function is called when the new task form is submitted
+    var athlinks_id = event.target.athlinks_id.value;
+    Meteor.call("search_athlinks", athlinks_id);
 
-    var text = event.target.athlinks_id.value;
-
-    // gmaps.clear_all_markers();
-    Meteor.call("search_athlinks", text);
-    // Session.set('athlete_id', text);
-
-    // Clear form
     event.target.athlinks_id.value = "";
 
-    // Prevent default form submit
     return false;
   },
   'click .races ul a': function(event) {
