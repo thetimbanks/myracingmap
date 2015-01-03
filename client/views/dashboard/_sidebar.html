@@ -3,6 +3,7 @@
     {{> races}}
     {{> add_race}}
     {{> view_race}}
+    {{> edit_race}}
   </div>
 </template>
 
@@ -35,8 +36,23 @@
   <div class="view-race">
     <a href="#" class="cancel">Cancel</a>
     {{#with race}}
+    <a href="#" class="edit" data-race="{{_id}}">Edit</a>
     <h2>{{name}}</h2>
     <p>{{lat}}, {{lon}}</p>
     {{/with}}
+  </div>
+</template>
+
+<template name="edit_race">
+  <div class="edit-race">
+    <a href="#" class="cancel">Cancel</a>
+    <h2>Editing race</h2>
+
+    <form class="edit-race">
+      {{#with race}}
+      <input type="text" name="name" value="{{name}}" />
+      {{/with}}
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </template>

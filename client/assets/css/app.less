@@ -3,7 +3,7 @@
   height: 400px;
 }
 
-.add-race, .view-race {
+.add-race, .view-race, .edit-race {
   display: none;
 }
 
@@ -12,25 +12,27 @@
     display: block;
   }
 
-  .races {
-    display: none;
-  }
-
-  .view-race {
+  .races, .view-race, .edit-race {
     display: none;
   }
 }
 
 .viewing {
-  .add-race {
-    display: none;
-  }
-
-  .races {
-    display: none;
-  }
-
   .view-race {
     display: block;
+  }
+  
+  .add-race, .races, .edit-race {
+    display: none;
+  }
+}
+
+.editing {
+  .edit-race {
+    display: block;
+  }
+
+  .add-race, .races, .view-race {
+    display: none;
   }
 }

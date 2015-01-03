@@ -15,7 +15,7 @@ Template.race_map.helpers({
           });
 
           google.maps.event.addListener(marker, 'click', function() {
-            Session.set("current_race", marker.race._id);
+            Session.set("current_view_race", marker.race._id);
           });
         });
       });
