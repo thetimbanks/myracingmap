@@ -1,0 +1,31 @@
+<template name="dashboard_sidebar">
+  <div class="dashboard-sidebar">
+    {{> races}}
+    {{> add_race}}
+  </div>
+</template>
+
+<template name="races">
+  <div class="races">
+    <a href="#" class="add">Add Race</a>
+
+    <h2>Your races</h2>
+
+    <ul>
+      {{#each races}}
+      <li>{{name}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="add_race">
+  <div class="add-race">
+    <a href="#" class="cancel">Cancel</a>
+    <h2>Adding a race</h2>
+    <form class="search">
+      <input name="athlinks_id" type="text" placeholder="Search Athlinks">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</template>

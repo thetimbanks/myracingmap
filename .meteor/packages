@@ -15,3 +15,5 @@ meteorhacks:fast-render
 dburles:google-maps
 less
 coffeescript
+http
+aldeed:geocoder

@@ -4,17 +4,21 @@ Template.race_map.helpers({
     if (GoogleMaps.loaded()) {
       // We can use the `ready` callback to interact with the map API once the map is ready.
       GoogleMaps.ready('race_map', function(map) {
-        // Add a marker to the map once it's ready
-        var marker = new google.maps.Marker({
-          position: map.options.center,
-          map: map.instance
+        var races = Races.find({user_id: Meteor.userId()}).fetch();
+
+        _.each(races, function(race) {
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(race.lat, race.lon),
+            map: map.instance,
+            title: race.name
+          });
         });
       });
 
       // Map initialization options
       return {
-        center: new google.maps.LatLng(-37.8136, 144.9631),
-        zoom: 8
+        center: new google.maps.LatLng(38.991673, -94.633568),
+        zoom: 4
       };
     }
   }
