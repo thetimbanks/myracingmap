@@ -6,10 +6,10 @@ Template.races.helpers({
 
 Template.dashboard_sidebar.events({
   'click .add': function (event, template) {
-    template.$(".dashboard-sidebar").addClass("adding");
+    race_helper.show_add_race();
   },
   'click .cancel': function (event, template) {
-    template.$(".dashboard-sidebar").removeClass("adding viewing editing");
+    race_helper.show_race_list();
   },
   "submit .search": function (event) {
     var athlinks_id = event.target.athlinks_id.value;
@@ -20,18 +20,18 @@ Template.dashboard_sidebar.events({
     return false;
   },
   'click .races ul a': function(event) {
-    Session.set("current_view_race", $(event.target).data("race"));
+    race_helper.set_current_view_race($(event.target).data("race"));
   },
   'click .edit': function(event) {
-    Session.set("current_edit_race", $(event.target).data("race"));
+    race_helper.set_current_edit_race($(event.target).data("race"));
   },
   'submit .edit-race': function(event) {
     var update_params = {
       name: event.target.name.value
     };
 
-    Meteor.call("update_race", Session.get("current_edit_race"), update_params);
-    $(".dashboard-sidebar").removeClass("editing").addClass("viewing");
+    Meteor.call("update_race", race_helper.get_current_edit_race(), update_params);
+    race_helper.set_current_view_race(race_helper.get_current_edit_race());
 
     return false;
   }
@@ -39,30 +39,25 @@ Template.dashboard_sidebar.events({
 
 Template.view_race.helpers({
   race: function() {
-    return Races.findOne(Session.get("current_view_race"));
+    return Races.findOne(race_helper.get_current_view_race()));
   }
 });
 
 Template.view_race.rendered = function() {
   Deps.autorun(function() {
-    var race = Session.get("current_view_race");
-    if (typeof race !== 'undefined') {
-      $(".dashboard-sidebar").removeClass("adding editing").addClass("viewing");
-    }
+    race_helper.show_view_race(race_helper.get_current_view_race());
   });
 }
 
 Template.edit_race.helpers({
   race: function() {
-    return Races.findOne(Session.get("current_edit_race"));
+    console.log("edit race helper", race_helper.get_current_edit_race());
+    return Races.findOne(race_helper.get_current_edit_race());
   }
 });
 
 Template.edit_race.rendered = function() {
   Deps.autorun(function() {
-    var race = Session.get("current_edit_race");
-    if (typeof race !== 'undefined') {
-      $(".dashboard-sidebar").removeClass("adding viewing").addClass("editing");
-    }
+    race_helper.show_edit_race(race_helper.get_current_edit_race());
   });
 }
