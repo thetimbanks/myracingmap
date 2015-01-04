@@ -1,12 +1,12 @@
 race_helper = {
   get_current_view_race: function() {
-    Session.get("current_view_race");
+    return Session.get("current_view_race");
   },
   set_current_view_race: function(id) {
     Session.set("current_view_race", id);
   },
   get_current_edit_race: function() {
-    Session.get("current_edit_race");
+    return Session.get("current_edit_race");
   },
   set_current_edit_race: function(id) {
     Session.set("current_edit_race", id);

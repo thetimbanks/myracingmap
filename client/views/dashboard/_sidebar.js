@@ -30,8 +30,17 @@ Template.dashboard_sidebar.events({
       name: event.target.name.value
     };
 
-    Meteor.call("update_race", race_helper.get_current_edit_race(), update_params);
-    race_helper.set_current_view_race(race_helper.get_current_edit_race());
+    Meteor.call("update_race", race_helper.get_current_edit_race(), update_params, function() {
+      race_helper.set_current_view_race(race_helper.get_current_edit_race());
+    });
+
+    return false;
+  },
+  'submit .form-add-race': function(event) {
+    var latlon = Meteor.call("geocode", [event.target.city.value, event.target.state.value, event.target.country.value].join(", "), function(error, result) {
+      Meteor.call("add_race", event.target.name.value, result.lat, result.lon, null);
+      race_helper.show_race_list();
+    });
 
     return false;
   }
@@ -39,7 +48,7 @@ Template.dashboard_sidebar.events({
 
 Template.view_race.helpers({
   race: function() {
-    return Races.findOne(race_helper.get_current_view_race()));
+    return Races.findOne(race_helper.get_current_view_race());
   }
 });
 
@@ -51,7 +60,6 @@ Template.view_race.rendered = function() {
 
 Template.edit_race.helpers({
   race: function() {
-    console.log("edit race helper", race_helper.get_current_edit_race());
     return Races.findOne(race_helper.get_current_edit_race());
   }
 });
