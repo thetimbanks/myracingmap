@@ -15,7 +15,7 @@ Template.race_map.helpers({
           });
 
           google.maps.event.addListener(marker, 'click', function() {
-            race_helper.set_current_view_race(marker.race._id);
+            Router.go("view.race", { _id: Meteor.userId(), race_id: marker.race._id});
           });
         });
       });

@@ -1,0 +1,17 @@
+<template name="add_race">
+  <div class="add-race">
+    <a href="{{pathFor route='users.dashboard' _id=currentUser._id}}">Back</a>
+    <h2>Adding a race</h2>
+    <form class="search">
+      <input name="athlinks_id" type="text" placeholder="Search Athlinks">
+      <button type="submit">Submit</button>
+    </form>
+    <form class="add">
+      <input name="name" type="text" placeholder="Race name">
+      <input name="city" type="text" placeholder="City">
+      <input name="state" type="text" placeholder="State">
+      <input name="country" type="text" placeholder="Country">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</template>

@@ -4,8 +4,12 @@
     {{> loginButtons}}
   </header>
 
-  <div id="main-content">
+  <div class="main-content">
     {{> yield}}
+  </div>
+
+  <div class="sidebar">
+    {{> yield "sidebar"}}
   </div>
 
   <footer>

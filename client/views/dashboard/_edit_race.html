@@ -1,0 +1,12 @@
+<template name="edit_race">
+  <div class="edit-race">
+    <a href="{{pathFor route='view.race' _id=user_id race_id=_id}}">Back</a>
+    <h2>Editing race</h2>
+
+    <form class="edit-race">
+      <input type="text" name="name" value="{{name}}" />
+      <input type="hidden" name="id" value="{{_id}}" />
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</template>

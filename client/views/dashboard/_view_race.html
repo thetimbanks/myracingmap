@@ -1,0 +1,8 @@
+<template name="view_race">
+  <div class="view-race">
+    <a href="{{pathFor route='users.dashboard'}}">Back</a>
+    <a href="{{pathFor route='edit.race' _id=user_id race_id=_id}}">Edit race</a>
+    <h2>{{name}}</h2>
+    <p>{{lat}}, {{lon}}</p>
+  </div>
+</template>

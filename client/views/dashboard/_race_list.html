@@ -1,0 +1,13 @@
+<template name="race_list">
+  <div class="races">
+    <a href="{{pathFor route='add.race' _id=currentUser._id}}">Add Race</a>
+
+    <h2>Your races</h2>
+
+    <ul>
+      {{#each races}}
+      <li><a href="{{pathFor route='view.race' _id=user_id race_id=_id}}">{{name}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+</template>
