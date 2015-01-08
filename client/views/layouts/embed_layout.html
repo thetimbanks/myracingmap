@@ -1,0 +1,11 @@
+<template name="embed_layout">
+  <div class="main-content">
+    {{> embed_race_map}}
+  </div>
+</template>
+
+<template name="embed_race_map">
+  <div class="map-container">
+    {{> googleMap name="race_map" options=race_map_options}}
+  </div>
+</template>

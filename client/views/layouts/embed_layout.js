@@ -1,4 +1,4 @@
-Template.user_race_map.helpers({
+Template.embed_race_map.helpers({
   race_map_options: function() {
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded()) {
@@ -13,17 +13,14 @@ Template.user_race_map.helpers({
             title: race.name,
             race: race
           });
-
-          google.maps.event.addListener(marker, 'click', function() {
-            Router.go("view.race", { _id: Meteor.userId(), race_id: marker.race._id});
-          });
         });
       });
 
       // Map initialization options
       return {
         center: new google.maps.LatLng(38.991673, -94.633568),
-        zoom: 4
+        zoom: 4,
+        disableDefaultUI: true
       };
     }
   }

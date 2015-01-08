@@ -5,7 +5,7 @@
   </header>
 
   <div class="main-content">
-    {{> race_map}}
+    {{> user_race_map}}
   </div>
 
   <div class="sidebar">
@@ -17,7 +17,7 @@
   </footer>
 </template>
 
-<template name="race_map">
+<template name="user_race_map">
   <div class="map-container">
     {{> googleMap name="race_map" options=race_map_options}}
   </div>
