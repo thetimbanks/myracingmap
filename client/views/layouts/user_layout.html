@@ -1,0 +1,24 @@
+<template name="user_layout">
+  <header>
+    This is the header up here
+    {{> loginButtons}}
+  </header>
+
+  <div class="main-content">
+    {{> race_map}}
+  </div>
+
+  <div class="sidebar">
+    {{> yield}}
+  </div>
+
+  <footer>
+    This is the footer down here
+  </footer>
+</template>
+
+<template name="race_map">
+  <div class="map-container">
+    {{> googleMap name="race_map" options=race_map_options}}
+  </div>
+</template>
