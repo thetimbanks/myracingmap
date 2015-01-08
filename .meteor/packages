@@ -10,9 +10,9 @@ iron:router
 accounts-ui
 accounts-base
 accounts-password
-meteorhacks:fast-render
-dburles:google-maps
 less
 coffeescript
 http
 aldeed:geocoder
+meteorhacks:fast-render
+dburles:google-maps
