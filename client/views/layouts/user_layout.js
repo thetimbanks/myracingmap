@@ -1,23 +1,26 @@
 Template.user_race_map.helpers({
-  race_map_options: function() {
-    var current_race = this;
+  race_map_options: function() {;
 
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded()) {
       GoogleMaps.default_center = new google.maps.LatLng(38.991673, -94.633568);
 
-      // We can use the `ready` callback to interact with the map API once the map is ready.
-      GoogleMaps.ready('race_map', function(map) {
-        if (GoogleMaps.markers && GoogleMaps.markers.length == 0) {
-          var races = Races.find({user_id: Meteor.userId()}).fetch();
+      if (!GoogleMaps.map_loaded) {
+        // We can use the `ready` callback to interact with the map API once the map is ready.
+        GoogleMaps.ready('race_map', function(map) {
+          if (GoogleMaps.markers && GoogleMaps.markers.length == 0) {
+            var races = Races.find({user_id: Meteor.userId()}).fetch();
 
-          _.each(races, function(race) {
-            GoogleMaps.add_marker(map, race);
-          });
-        }
+            _.each(races, function(race) {
+              GoogleMaps.add_marker(map, race);
+            });
+          }
 
-        GoogleMaps.focus_marker(map, current_race);
-      });
+          GoogleMaps.focus_marker(map, Router.current().params.race_id);
+        });
+
+        GoogleMaps.map_loaded = true;
+      }
 
       // Map initialization options
       return {
@@ -25,5 +28,6 @@ Template.user_race_map.helpers({
         zoom: this.default_zoom
       };
     }
+
   }
 });

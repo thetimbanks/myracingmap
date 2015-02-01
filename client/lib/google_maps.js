@@ -21,12 +21,14 @@ GoogleMaps.add_marker = function(map, race) {
   this.lat_lons.push(lat_lon);
 }
 
-GoogleMaps.calculate_bounds = function(map) {
-  var bounds = new google.maps.LatLngBounds();
-  for (var i = 0, latLngLength = this.latLngs.length; i < latLngLength; i++) {
-    bounds.extend(this.lat_lons[i]);
+GoogleMaps.fit_bounds = function(map) {
+  if (!Router.current().params.race_id) {
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0, lat_long_length = this.lat_lons.length; i < lat_long_length; i++) {
+      bounds.extend(this.lat_lons[i]);
+    }
+    map.instance.fitBounds(bounds);
   }
-  map.fitBounds(bounds);
 }
 
 GoogleMaps.set_current_marker = function(marker) {
@@ -36,22 +38,24 @@ GoogleMaps.set_current_marker = function(marker) {
   this.current_marker = marker;
 }
 
-GoogleMaps.focus_marker = function(map, race) {
+GoogleMaps.focus_marker = function(map, race_id) {
   this.set_current_marker(null);
   _.each(this.markers, function(marker) {
-    if (race._id && marker.race._id !== race._id) {
+    if (race_id && marker.race._id !== race_id) {
       marker.setMap(null);
     } else {
       marker.setMap(map.instance);
     }
 
-    if (race._id && marker.race._id === race._id) {
+    if (race_id && marker.race._id === race_id) {
       GoogleMaps.set_current_marker(marker);
     }
   });
 
-  if (race._id) {
-    var lat_lon = new google.maps.LatLng(race.lat, race.lon);
+  if (race_id) {
+    var race = Router.current().data(),
+        lat_lon = new google.maps.LatLng(race.lat, race.lon);
+
     map.instance.setZoom(this.focus_zoom);
     map.instance.setCenter(lat_lon);
   } else {
